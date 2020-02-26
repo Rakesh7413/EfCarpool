@@ -3,6 +3,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using CarPool.Models;
 using Carpool.Data;
+using Carpool.Data.Models;
 using AutoMapper;
 using CarPool.Service;
 
@@ -21,22 +22,22 @@ namespace CarPool.Services
 
         public bool SignIn(string phoneNumber, string password)
         {
-            CurrentUser = repository.Get<Data.Models.User>(u => u.PhoneNumber == phoneNumber).Map<User>();
+            CurrentUser = repository.Get<User>(u => u.PhoneNumber == phoneNumber).Map<User>();
             return (CurrentUser != null && CurrentUser.Password == password);
         }
         public User GetUser(int userId)
         {
-            return repository.Get<Data.Models.User>(u => u.UserId == userId).Map<User>();
+            return repository.Get<Users>(u => u.UserId == userId).Map<User>();
         }
         public bool IsExistingUser(string phoneNumber)
         {
-            return repository.Get<Data.Models.User>(u => u.PhoneNumber == phoneNumber).Map<User>() != null;
+            return repository.Get<Users>(u => u.PhoneNumber == phoneNumber).Map<User>() != null;
         }
         public bool SignUp(User user)
         {
             if (GenericValidator.Validate(user, out List<string> errors))
             {
-                repository.Add<Data.Models.User>(MapperHelper.Map<Data.Models.User>(user)); //is it the correct usage?
+                repository.Add<Users>(MapperHelper.Map<Users>(user)); //is it the correct usage?
                 return true;
             }
             else
@@ -47,19 +48,19 @@ namespace CarPool.Services
 
         public bool IsValidPetName(string phoneNumber, string petName)
         {
-            return repository.Get<Data.Models.User>(u => u.PhoneNumber == phoneNumber && u.PetName == petName) != null;
+            return repository.Get<Users>(u => u.PhoneNumber == phoneNumber && u.PetName == petName) != null;
         }
 
         public void ResetPassword(string phoneNumber, string password)
         {
-            var user = repository.Get<Data.Models.User>(u => u.PhoneNumber == phoneNumber);
+            var user = repository.Get<Users>(u => u.PhoneNumber == phoneNumber);
             user.Password = password;
-            repository.Update<Data.Models.User>(user);
+            repository.Update<Users>(user);
         }
 
         public User GetUser(string phoneNumber)
         {
-            return repository.Get<Data.Models.User>(u => u.PhoneNumber == phoneNumber).Map<User>();
+            return repository.Get<Users>(u => u.PhoneNumber == phoneNumber).Map<User>();
         }
 
     }

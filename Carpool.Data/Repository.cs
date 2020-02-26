@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarPool.Data
+namespace Carpool.Data
 {
     public class Repository
     {
