@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Carpool.Data\Carpool.Data.csproj" />
+    <ProjectReference Include="..\CarPool.Models\CarPool.Models.csproj" />
+  </ItemGroup>
+
 </Project>
