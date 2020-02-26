@@ -293,11 +293,11 @@ namespace CarPool
                     viaPlaces.Add(places[index - 1]);
                 }
             }
-            ride.PricePerKilometer = Convert.ToDecimal(GetStringMatch("Please Enter Cost per Kilometer(Rupees.paise): ", "Invalid cost", Patterns.Amount));
-            //do
-            //{
 
-            //} while (rideProviderServices.GetMaximumCharge(carType)<ride.PricePerKilometer);
+            do
+            {
+            ride.PricePerKilometer = Convert.ToDecimal(GetStringMatch("Please Enter Cost per Kilometer(Rupees.paise): ", "Invalid cost", Patterns.Amount));
+            } while (rideProviderServices.GetMaximumCharge(carType)<ride.PricePerKilometer);
 
             ride.CarNumber = CarNumber;
             ride.RideProviderId = providerId;

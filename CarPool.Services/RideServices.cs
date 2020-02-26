@@ -29,7 +29,6 @@ namespace CarPool.Services
         }
         public int GetDistanceBetweenPlaces(string source, string destination, List<string> viaPoints)
         {
-            // Returns the distance from source to destination via intermediate places(viaPoints)
             int distance = 0;
             string start = source;
             viaPoints.Add(destination);
