@@ -6,8 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Carpool.Data\Carpool.Data.csproj" />
     <ProjectReference Include="..\CarPool.Models\CarPool.Models.csproj" />
+    <ProjectReference Include="..\CarPool\CarPool.csproj" />
   </ItemGroup>
 
 </Project>
