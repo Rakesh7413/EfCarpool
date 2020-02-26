@@ -22,7 +22,7 @@ namespace CarPool.Services
 
         public bool SignIn(string phoneNumber, string password)
         {
-            CurrentUser = repository.Get<User>(u => u.PhoneNumber == phoneNumber).Map<User>();
+            CurrentUser = repository.Get<Users>(u => u.PhoneNumber == phoneNumber).Map<User>();
             return (CurrentUser != null && CurrentUser.Password == password);
         }
         public User GetUser(int userId)
