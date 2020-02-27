@@ -16,7 +16,7 @@ namespace CarPool.Models
 
     public enum Places
     {
-        Secunderabad=1,
+        Secunderabad=0,
         Miyapur,
         Madhapur,
         Durgamcheruvu,

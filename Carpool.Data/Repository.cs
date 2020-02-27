@@ -12,7 +12,7 @@ namespace Carpool.Data
 {
     public class Repository
     {
-        CarpoolDbContext dbContext;
+        public CarpoolDbContext dbContext;
         public Repository()
         {
             dbContext = new CarpoolDbContext();
@@ -22,6 +22,7 @@ namespace Carpool.Data
         {
             try
             {
+                dbContext.Entry(tObject).State = EntityState.Detached;
                 dbContext.Set<T>().Add(tObject);
                 dbContext.SaveChanges();
             }
@@ -48,7 +49,8 @@ namespace Carpool.Data
 
         public void Update<T>(T tObject) where T : class
         {
-            dbContext.Set<T>().Update(tObject);
+            dbContext.Update(tObject);
+            dbContext.Entry(tObject).State = EntityState.Detached;
             dbContext.SaveChanges();
         }
 

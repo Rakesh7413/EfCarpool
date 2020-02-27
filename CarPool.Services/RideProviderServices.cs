@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using CarPool.Models;
 using Carpool.Data;
 using Carpool.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarPool.Services
 {
@@ -43,9 +44,9 @@ namespace CarPool.Services
 
         public bool ApproveBooking(int bookingId, BookingStatus value)
         {
-            Booking booking = repository.Get< Bookings>(b => b.BookingId == bookingId).Map<Booking>();
-
-            var currentRide = repository.Get< Rides>(r => r.RideId == booking.RideId).Map<Ride>();
+            Bookings bookings = repository.Get<Bookings>(b => b.BookingId == bookingId);
+            Booking booking= bookings.Map<Booking>();
+            var currentRide = repository.Get<Rides>(r => r.RideId == booking.RideId).Map<Ride>();
 
             if (booking != null)
             {
@@ -59,10 +60,12 @@ namespace CarPool.Services
                     if (place == booking.Destination)
                     {
                         if (maxSeatsAvailable >= booking.NumberSeatsSelected)
-                        {
+                        { 
                             var bookingModel = repository.Get< Bookings>(b => b.BookingId == bookingId).Map<Booking>();
+                            repository.dbContext.Entry(bookings).State = EntityState.Detached;
                             bookingModel.Status = value;
-                            repository.Update< Bookings>(bookingModel.Map< Bookings>());
+                            repository.Update<Bookings>(bookingModel.Map< Bookings>());
+                            repository.dbContext.Entry(bookingModel).State = EntityState.Detached;
                             return true;
                         }
                         break;

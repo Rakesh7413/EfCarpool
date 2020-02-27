@@ -25,16 +25,16 @@ namespace CarPool
             {
                 Console.Clear();
                 Console.WriteLine("---------------WELCOME to CarPool----------------\n ");
-                Console.WriteLine("1.SignIn\n2.SignUp \n3.Forgot Password \n4.close Application");
+                Console.WriteLine("1.SignUp\n2.SignIn \n3.Forgot Password \n4.close Application");
                 Console.WriteLine("Please Enter your Choice");
                 int.TryParse(Console.ReadLine(), out Choice);
                 switch (Choice)
                 {
                     case 1:
-                        userFunctionalities.SignIn();
+                        userFunctionalities.SignUp();
                         break;
                     case 2:
-                        userFunctionalities.SignUp();
+                        userFunctionalities.SignIn();
                         break;
                     case 3:
                         userFunctionalities.ForgotPassword();

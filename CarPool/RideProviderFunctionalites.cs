@@ -264,27 +264,35 @@ namespace CarPool
                 }
             }
 
-            // Getting ride offer details from the user(like source,destination,starttime,end time..)
             var date = GetStringMatch("Enter date of Journey(dd/mm/yyyy):", "Invalid date format", Patterns.Date).Split('/');
+
             ride.DateOfRide = DateTime.Parse(date[1] + " / " + date[0] + " / " + date[2]);
-            // Start Location
+
             Console.WriteLine("\nPlease select Starting Location");
+
             ride.Source = Enum.GetName(typeof(Places), GetUserChoiceInEnum<Places>());
 
             time = GetStringMatch("Please enter start time (HH:MM) In 24 Hour Format: ", "Invalid time", Patterns.Time);
+
             ride.StartTime = DateTime.ParseExact(time + ":00", "HH:mm:ss", CultureInfo.InvariantCulture);
 
             Console.WriteLine("\nPlease select destination Location");
+
             ride.Destination = Enum.GetName(typeof(Places), GetUserChoiceInEnum<Places>());
+
             ride.NoOfSeatsAvailable = GetIntegerInRange("Please enter No of seats available", "Invalid Data", 1, capacity - 1);
-            // List of via points.
+            
             Console.WriteLine("Enter Intermediate places seperated by spaces:");
+
             var places = Enum.GetNames(typeof(Places));
+
             var viaPlaces = new List<string>();
+
             foreach (string value in places)
             {
                 Console.WriteLine($"{optionNumber++}.{value}");
             }
+
             foreach (string choice in Console.ReadLine().Split(' '))
             {
                 int.TryParse(choice, out int index);
@@ -300,8 +308,11 @@ namespace CarPool
             } while (rideProviderServices.GetMaximumCharge(carType)<ride.PricePerKilometer);
 
             ride.CarNumber = CarNumber;
+
             ride.RideProviderId = providerId;
+
             ride.ViaPlaces = viaPlaces;
+
             try
             {
                 rideProviderServices.AddRide(ride);
@@ -311,6 +322,7 @@ namespace CarPool
             {
                 Console.WriteLine(e.Message);
             }
+
             Console.ReadKey();
         }
 

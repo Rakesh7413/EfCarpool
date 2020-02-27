@@ -45,7 +45,6 @@ namespace CarPool
 
         public int GetIntegerInRange(string displayMessage, string errorMessage, int minimumValue, int maximumValue)
         {
-            // It will return a value between minimum value and maximum value.
             do
             {
                 Console.Write(displayMessage);
