@@ -65,7 +65,6 @@ namespace CarPool.Services
                             repository.dbContext.Entry(bookings).State = EntityState.Detached;
                             bookingModel.Status = value;
                             repository.Update<Bookings>(bookingModel.Map< Bookings>());
-                            repository.dbContext.Entry(bookingModel).State = EntityState.Detached;
                             return true;
                         }
                         break;

@@ -301,10 +301,22 @@ namespace CarPool
                     viaPlaces.Add(places[index - 1]);
                 }
             }
-
             do
             {
-            ride.PricePerKilometer = Convert.ToDecimal(GetStringMatch("Please Enter Cost per Kilometer(Rupees.paise): ", "Invalid cost", Patterns.Amount));
+
+                Console.Write($"Maximum fare you can charge is (per KM):{rideProviderServices.GetMaximumCharge(carType)}.\n Do you want to continue with the fare or change the fare(Y/N):");
+                switch (Console.ReadLine())
+                {
+                    case "y":
+                        ride.PricePerKilometer = rideProviderServices.GetMaximumCharge(carType);
+                        break;
+                    case "n":
+                        ride.PricePerKilometer = Convert.ToDecimal(GetStringMatch("Please Enter Cost per Kilometer(Rupees.paise): ", "Price cannot be more than the base price.", Patterns.Amount));
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input.");
+                        break;
+                }
             } while (rideProviderServices.GetMaximumCharge(carType)<ride.PricePerKilometer);
 
             ride.CarNumber = CarNumber;

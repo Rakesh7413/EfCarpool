@@ -37,7 +37,7 @@ namespace CarPool.Services
         {
             if (GenericValidator.Validate(user, out List<string> errors))
             {
-                repository.Add<Users>(MapperHelper.Map<Users>(user)); //is it the correct usage?
+                repository.Add<Users>(MapperHelper.Map<Users>(user)); 
                 return true;
             }
             else

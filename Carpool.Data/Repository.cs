@@ -20,17 +20,18 @@ namespace Carpool.Data
 
         public void Add<T>(T tObject) where T : class
         {
-            try
-            {
+            //try
+            //{
                 dbContext.Entry(tObject).State = EntityState.Detached;
                 dbContext.Set<T>().Add(tObject);
                 dbContext.SaveChanges();
-            }
-            catch (DbUpdateException e)
-            {
-                throw new Exception(e.Message);
-            }
+            //}
+            //catch (DbUpdateException e)
+            //{
+            //    throw new Exception(e.Message);
+            //}
         }
+
 
         public List<T> GetTable<T>() where T : class
         {
@@ -50,8 +51,8 @@ namespace Carpool.Data
         public void Update<T>(T tObject) where T : class
         {
             dbContext.Update(tObject);
-            dbContext.Entry(tObject).State = EntityState.Detached;
             dbContext.SaveChanges();
+            dbContext.Entry(tObject).State = EntityState.Detached;
         }
 
         public int Count<T>(Expression<Func<T, bool>> predicate = null) where T : class
@@ -74,3 +75,4 @@ namespace Carpool.Data
 
     }
 }
+//Scaffold-DbContext "Server=(localdb)\MSSQLLocalDb;Database=Carpool;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models

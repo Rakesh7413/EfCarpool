@@ -27,7 +27,7 @@ namespace Carpool.Data.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Carpool;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDb;Database=Carpool;Trusted_Connection=True;");
             }
         }
 
@@ -37,8 +37,6 @@ namespace Carpool.Data.Models
             {
                 entity.HasKey(e => e.BookingId)
                     .HasName("PK_Booking");
-
-                entity.Property(e => e.BookingId).ValueGeneratedNever();
 
                 entity.Property(e => e.BookingDate).HasColumnType("datetime");
 

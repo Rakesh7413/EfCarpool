@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="microsoft.entityframeworkcore.tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Carpool.Data\Carpool.Data.csproj" />
     <ProjectReference Include="..\CarPool.Models\CarPool.Models.csproj" />
     <ProjectReference Include="..\CarPool.Services\CarPool.Services.csproj" />
